@@ -4,5 +4,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     url('index', polls.views.index, name='index'),
-    url('refresh_profile', polls.views.refresh_profile, name='refresh_profile')
+    url('question_types', polls.views.question_types, name='question_types'),
+    url('settings_page', polls.views.settings_page, name='settings_page'),
 ]

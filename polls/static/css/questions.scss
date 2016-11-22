@@ -1,0 +1,27 @@
+.category {
+    opacity: 0.6;
+    -webkit-transition: opacity 400ms linear;
+    -moz-transition: opacity 400ms linear;
+    -o-transition: opacity 400ms linear;
+    -ms-transition: opacity 400ms linear;
+    transition: opacity 400ms linear;
+    &:hover {
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+
+.category.not-available {
+    opacity: 0.5;
+   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+
+.mtop {
+  margin-top: 4px;
+}
+
+.centering {
+    text-align: center;
+}

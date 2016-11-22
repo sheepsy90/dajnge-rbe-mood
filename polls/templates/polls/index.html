@@ -1,23 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="row" style="margin-top: 4em">
-        <div class="col-xs-12 col-sm-3 col-sm-offset-6 col-md-4 col-md-offset-4">
-            This is the page where the polls that you can take are listed.
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" style="text-align: justify">
+            This page let's you choose on which polls you want to take part. There are regular polls that
+            are questions that repeat from time to time to measure your happiness and gather metrics over time
+            amongst all RBE supporters. With this information we can correct based on supporters attitude.
+            The other category is specific questions that generate insights about specific topics and are only
+            available during a specific interval.
         </div>
-
     </div>
-      <div class="row" style="margin-top: 4em">
-        <div class="col-xs-12 col-sm-3 col-sm-offset-6 col-md-4 col-md-offset-4">
-            <a href="{% url 'refresh_profile' %}" class="btn btn-primary">Get profile stuff</a>
-            <i>Token expires in: {{ user.profile.token.expires_in }}</i>
-            <div><b>Your profile details from RBE Network</b></div>
-            <ul>
-                <li>{{ token_stuff.uid }}</li>
-                <li>{{ token_stuff.username }}</li>
-                <li>{{ token_stuff.email }}</li>
-            </ul>
+    <div class="row" style="margin-top: 4em">
+        <div class="col-xs-6 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4 centering">
+            <img class="category img-responsive"  src="{% static 'img/specific_surveys.png' %}">
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-2 centering">
+            <img class="category img-responsive" src="{% static 'img/weekly_questions.png' %}">
+        </div>
+    </div>
+    <div class="row" style="margin-top: 4em">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" style="text-align: justify">
+            Currently there are now questions available for you. Your settings state that you will / will not receive
+            a notification when questions are available. If you want to change those option check your settings.
         </div>
     </div>
 </div>

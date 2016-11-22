@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top: 4em">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 centering">
+            <i>
+                This is a likert 5 point question which request an answer on a scale in five categories.
+                The question often poses a statement that you need to rate on a scale.
+            </i>
+        </div>
+    </div>
+    {% include 'polls/questions/likert_question_5.html' %}
+    <hr>
+    <div class="row" style="margin-top: 4em">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 centering">
+            <i>
+                This is a likert 4 point question which request an answer on a scale in four categories.
+                The question often poses a statement that you need to rate on a scale.
+            </i>
+        </div>
+    </div>
+    {% include 'polls/questions/likert_question_4.html' %}
+    <hr>
+    <div class="row" style="margin-top: 4em">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 centering">
+            <i>
+                This is a simple yes/no question where you can agree/disagree or answer yes/no on a question.
+            </i>
+        </div>
+    </div>
+    {% include 'polls/questions/yes_no_question.html' %}
+</div>
+{% endblock %}
+

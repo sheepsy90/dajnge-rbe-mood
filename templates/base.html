@@ -24,6 +24,8 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+
     {% block header %}{% endblock %}
 </head>
 
@@ -50,8 +52,9 @@
             {% if user.is_authenticated %}
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li id='general_info'><a href="">Info</a></li>
-                        <li id='logout'><a href="{% url 'logout' %}">Logout <span class="fa fa-sign-out"></span></a></li>
+                        <li id='question_types'><a href="{% url 'question_types' %}"><span class="fa fa-info"></span> Question types</a></li>
+                        <li id='settings_page'><a href="{% url 'settings_page' %}"><span class="fa fa-wrench"></span> Settings</a></li>
+                        <li id='logout'><a href="{% url 'logout' %}"><span class="fa fa-sign-out"></span> Logout</a></li>
                     </ul>
                 </div>
             {% endif %}

@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+conf/production_settings.py
+
 .idea/
 django_rbe/production_settings.py
 
