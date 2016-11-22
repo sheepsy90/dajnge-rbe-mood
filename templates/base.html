@@ -1,0 +1,69 @@
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" name="viewport">
+
+    <meta name="description"
+          content="The main purpose of this page is to provide surveys and questionnaires that measure peoples opinions and attitudes.">
+    <meta name="revisit-after" content="7 days">
+    <meta name="keywords" content="RBE,TVP,TYM,Resource Based Economy,Social Media, Surveys, Data">
+    <meta name="author" content="Robert Kessler">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>RBE Mood</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    {% block header %}{% endblock %}
+</head>
+
+
+<body style="margin-bottom: 2em">
+<div id="header">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- The navbar -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'landing' %}">RBE Mood</a>
+                {% if user.is_authenticated %}
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                {% endif %}
+
+            </div>
+            {% if user.is_authenticated %}
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id='general_info'><a href="">Info</a></li>
+                        <li id='logout'><a href="{% url 'logout' %}">Logout <span class="fa fa-sign-out"></span></a></li>
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+    {% csrf_token %}
+    <div style="height: 50px;" class=""></div>
+    {% block content %}{% endblock %}
+    {% include 'gtracking_snippet.html' %}
+</div>
+
+{% include 'url_script.html' %}
+</body>
+
+</html>

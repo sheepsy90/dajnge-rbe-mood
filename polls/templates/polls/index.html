@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top: 4em">
+        <div class="col-xs-12 col-sm-3 col-sm-offset-6 col-md-4 col-md-offset-4">
+            This is the page where the polls that you can take are listed.
+        </div>
+
+    </div>
+      <div class="row" style="margin-top: 4em">
+        <div class="col-xs-12 col-sm-3 col-sm-offset-6 col-md-4 col-md-offset-4">
+            <a href="{% url 'refresh_profile' %}" class="btn btn-primary">Get profile stuff</a>
+            <i>Token expires in: {{ user.profile.token.expires_in }}</i>
+            <div><b>Your profile details from RBE Network</b></div>
+            <ul>
+                <li>{{ token_stuff.uid }}</li>
+                <li>{{ token_stuff.username }}</li>
+                <li>{{ token_stuff.email }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
