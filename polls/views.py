@@ -1,7 +1,9 @@
 from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import render, render_to_response
 from django.template.context import RequestContext
 
@@ -32,3 +34,8 @@ def error_page(request):
 @login_required(login_url=settings.LOGIN_URL)
 def question_types(request):
     return render(request, 'polls/question_types.html')
+
+
+def meta(request):
+    user_count = User.objects.all().count()
+    return JsonResponse({'users': user_count})
