@@ -11,5 +11,6 @@ urlpatterns = [
     # The authorization package for RBE Network
     url(r'^', include('rbe_authorize.urls')),
     url(r'^polls/', include('polls.urls')),
+    url(r'^meta/', polls.views.meta, name='meta'),
 
 ]
