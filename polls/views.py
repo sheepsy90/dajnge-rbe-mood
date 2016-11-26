@@ -5,13 +5,11 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
-from django.shortcuts import render, render_to_response
-from django.template.context import RequestContext
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 
 from polls.models import WeeklyQuestion, WeeklyAnswer
-from rbe_authorize.api.api import get_user_identity
 
 
 def landing(request):
@@ -28,7 +26,6 @@ def index(request):
     context['weekly_question_count'] = wq_qs.count()
     context['available_survey_count'] = 0
 
-
     return render(request, 'polls/index.html', context)
 
 
@@ -38,8 +35,7 @@ def settings_page(request):
 
 
 def error_page(request):
-    rc = RequestContext(request)
-    return render_to_response('polls/error_page.html', rc)
+    return render(request, 'polls/error_page.html')
 
 
 @login_required(login_url=settings.LOGIN_URL)
@@ -55,14 +51,14 @@ def meta(request):
 @login_required(login_url=settings.LOGIN_URL)
 def weekly_question(request):
     """ Checks whether there is a weekly question which can be answered by a user else it show no question available """
-    rc = RequestContext(request)
+    context = {}
 
     # If there is a weekly question that can be answered it will return one
     wq = WeeklyQuestion.retrieve_wq_qs_for_user(request.user)
-    rc['weekly_question'] = wq.first()
-    rc['remaining_weekly_question'] = wq.count()
+    context['weekly_question'] = wq.first()
+    context['remaining_weekly_question'] = wq.count()
 
-    return render_to_response('polls/weekly_question.html', rc)
+    return render(request, 'polls/weekly_question.html', context)
 
 
 @login_required(login_url=settings.LOGIN_URL)
@@ -72,7 +68,7 @@ def specific_survey(request):
 
 @login_required(login_url=settings.LOGIN_URL)
 def answer_weekly_question(request):
-    rc = RequestContext(request)
+    context = {}
 
     question_id = request.GET.get('question_id')
     answer_value = request.GET.get('answer_value')
@@ -87,9 +83,9 @@ def answer_weekly_question(request):
             .exclude(answer_again_from__lt=timezone.now()).exists()
 
         if already_answered:
-            rc['error_message'] = "Question already answered!"
+            context['error_message'] = "Question already answered!"
         elif answer_value not in wq.answers.values():
-            rc['error_message'] = "Answer value not in the possible answers"
+            context['error_message'] = "Answer value not in the possible answers"
         else:
             WeeklyAnswer.answer_question(request.user, answer_value, wq, timezone.now())
 
@@ -101,7 +97,7 @@ def answer_weekly_question(request):
                 return HttpResponseRedirect(reverse('index'))
 
     except WeeklyQuestion.DoesNotExist:
-        rc['error_message'] = "Could not find the question you tried to answer!"
+        context['error_message'] = "Could not find the question you tried to answer!"
     except Exception:
-        rc['error_message'] = "Some error occurred during recording your answer"
-    return render_to_response('polls/error_page.html', rc)
+        context['error_message'] = "Some error occurred during recording your answer"
+    return render(request, 'polls/error_page.html', context)
