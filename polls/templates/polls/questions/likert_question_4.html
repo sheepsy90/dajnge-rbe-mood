@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-        {% for key, value in wq.answers.items %}
+        {% for key, value in wq.answers_lst %}
         <div class="col-xs-12 col-sm-2 {% if forloop.counter0 == 0 %}col-sm-offset-2{% endif %}">
             <a href="{% url 'answer_weekly_question' %}/?question_id={{ wq.id }}&answer_value={{ value }}"><div class="btn btn-success btn-block mtop">{{ key }}</div></a>
         </div>

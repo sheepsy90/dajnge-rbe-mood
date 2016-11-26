@@ -25,6 +25,10 @@ class WeeklyQuestion(models.Model):
         return "Question <id: {}, question: {}>".format(self.id, self.question)
 
     @property
+    def answers_lst(self):
+        return sorted(self.answers.items(), key=lambda x: x[1])
+
+    @property
     def answer_count(self):
         return len(self.answers)
 
