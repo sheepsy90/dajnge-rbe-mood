@@ -37,7 +37,16 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <!-- The navbar -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="{% url 'landing' %}">RBE Mood</a>
+                <a class="navbar-brand" href="{% url 'landing' %}">RBE Mood
+                {% if user.is_superuser %}
+                    <span style="font-size: 12px; display: inline-block">
+                        <span class="visible-xs">(XS)</span>
+                        <span class="visible-sm">(SM)</span>
+                        <span class="visible-md">(MD)</span>
+                        <span class="visible-lg">(LG)</span>
+                    </span>
+                {% endif %}
+                </a>
                 {% if user.is_authenticated %}
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1">
@@ -52,9 +61,13 @@
             {% if user.is_authenticated %}
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li id='question_types'><a href="{% url 'question_types' %}"><span class="fa fa-info"></span> Question types</a></li>
+                        <li id='question_types'><a href="{% url 'question_types' %}"><span class="fa fa-info"></span> Explanation & Terminology</a></li>
                         <li id='settings_page'><a href="{% url 'settings_page' %}"><span class="fa fa-wrench"></span> Settings</a></li>
                         <li id='logout'><a href="{% url 'logout' %}"><span class="fa fa-sign-out"></span> Logout</a></li>
+                        <li class="separator"></li>
+                        {% if user.is_superuser %}
+                            <li id='admin'><a href="{% url 'admin:index' %}">Admin</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             {% endif %}

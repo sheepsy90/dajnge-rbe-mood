@@ -3,4 +3,5 @@ argparse==1.2.1
 future==0.15.2
 gunicorn==19.4.5
 requests==2.11.1
+django-jsonfield
 mock

@@ -2,34 +2,33 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row" style="margin-top: 4em">
+    <div class="row" style="margin-top: 2em">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 centering">
-            <i>
-                This is a likert 5 point question which request an answer on a scale in five categories.
-                The question often poses a statement that you need to rate on a scale.
-            </i>
+            <h3 style="text-align: left">Likert scale</h3>
+
+            <p style="text-align: justify; font-style: italic">
+                On a likert question, respondents specify their level of agreement or disagreement on a symmetric agree-disagree scale
+                for a specific statement. Thus, the range captures the intensity of their feelings for a given question.<br><br>
+
+                An example could be: "How likely are you to listen to this?" with he possible answers very unlikely, unlikely, likely, very likely.
+            </p>
+            <p>
         </div>
     </div>
-    {% include 'polls/questions/likert_question_5.html' %}
     <hr>
-    <div class="row" style="margin-top: 4em">
+   <div class="row" style="margin-top: 2em">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 centering">
-            <i>
-                This is a likert 4 point question which request an answer on a scale in four categories.
-                The question often poses a statement that you need to rate on a scale.
-            </i>
+            <h3 style="text-align: left">Binary questions</h3>
+
+            <p style="text-align: justify; font-style: italic">
+                Some questions have only two answer possibilities and therefore classify the answers directly into two often mutually exclusive
+                extremes. This can be useful to generate first tendencies which later can be investigated more granular.<br><br>
+
+                An example could be: "Is building a city the most important step?" with he possible answers yes and no.
+            </p>
+            <p>
         </div>
     </div>
-    {% include 'polls/questions/likert_question_4.html' %}
-    <hr>
-    <div class="row" style="margin-top: 4em">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 centering">
-            <i>
-                This is a simple yes/no question where you can agree/disagree or answer yes/no on a question.
-            </i>
-        </div>
-    </div>
-    {% include 'polls/questions/yes_no_question.html' %}
 </div>
 {% endblock %}
 

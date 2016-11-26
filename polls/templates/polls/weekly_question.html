@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="row" style="margin-top: 4em">
+    <div class="col-xs-12">
+        {% if weekly_question %}
+            {% if weekly_question.answer_count == 2 %}
+                {% include 'polls/questions/yes_no_question.html' with wq=weekly_question %}
+            {% elif weekly_question.answer_count == 4 %}
+                {% include 'polls/questions/likert_question_4.html' with wq=weekly_question %}
+            {% elif weekly_question.answer_count == 5 %}
+                {% include 'polls/questions/likert_question_5.html' with wq=weekly_question %}
+            {% else %}
+                <h4>Sorry, this question is not supported yet!</h4>
+            {% endif %}
+        {% else %}
+            <h4>Sorry, no weekly question available for you right now.</h4>
+        {% endif %}
+    </div>
+</div>
+    </div>
+{% endblock %}
+

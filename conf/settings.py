@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls',
-    'rbe_authorize'
+    'rbe_authorize',
 ]
 
 MIDDLEWARE_CLASSES = [

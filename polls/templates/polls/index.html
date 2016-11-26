@@ -3,27 +3,39 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row" style="margin-top: 4em">
+    <div class="row" style="margin-top: 2em">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" style="text-align: justify">
-            This page let's you choose on which polls you want to take part. There are regular polls that
-            are questions that repeat from time to time to measure your happiness and gather metrics over time
-            amongst all RBE supporters. With this information we can correct based on supporters attitude.
-            The other category is specific questions that generate insights about specific topics and are only
-            available during a specific interval.
+            You can choose <b>specific surveys</b>, where you can take part once and which help
+            to generate insight about specific topics or you can answer <b>reoccurring questions</b>
+            which help to continuously include feedback from the community.
         </div>
     </div>
-    <div class="row" style="margin-top: 4em">
+    <div class="row" style="margin-top: 2em">
         <div class="col-xs-6 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4 centering">
-            <img class="category img-responsive"  src="{% static 'img/specific_surveys.png' %}">
+            <a href="{% url 'specific_survey' %}"><img class="category {% if available_survey_count == 0 %}not-available{% endif %}  img-responsive"  src="{% static 'img/specific_surveys.png' %}"></a>
+             {% if available_survey_count == 1 %}
+                <span style="font-size: 12px">You can take part in a survey.</span>
+            {% elif available_survey_count > 1 %}
+                <span style="font-size: 12px">You can take part in {{ available_survey_count }} surveys.</span>
+            {% else %}
+                <span style="font-size: 12px">Currently there are no surveys available.</span>
+            {% endif %}
         </div>
         <div class="col-xs-6 col-sm-3 col-md-2 centering">
-            <img class="category img-responsive" src="{% static 'img/weekly_questions.png' %}">
+            <a href="{% url 'weekly_question' %}"><img class="category {% if weekly_question_count == 0 %}not-available{% endif %} img-responsive" src="{% static 'img/weekly_questions.png' %}"></a>
+            {% if weekly_question_count == 1 %}
+                <span style="font-size: 12px">You can answer {{ weekly_question_count }} question.</span>
+            {% elif weekly_question_count > 1%}
+                <span style="font-size: 12px">You can answer {{ weekly_question_count }} questions.</span>
+            {% else %}
+                <span style="font-size: 12px">Currently no questions to answer.</span>
+            {% endif %}
         </div>
     </div>
-    <div class="row" style="margin-top: 4em">
+    <div class="row" style="margin-top: 3em">
         <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" style="text-align: justify">
-            Currently there are now questions available for you. Your settings state that you will / will not receive
-            a notification when questions are available. If you want to change those option check your settings.
+            If you want to change your notification settings about receiving information on new surveys
+            or when you are able to answer a weekly question again please check the settings page.
         </div>
     </div>
 </div>
