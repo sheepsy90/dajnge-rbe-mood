@@ -38,8 +38,6 @@ class WeeklyQuestion(models.Model):
         """ Retrieves a weekly question if any is available """
         wq_qs1 = WeeklyQuestion.objects.filter(active=True).exclude(weeklyanswer__answered_by=user)
         wq_qs2 = WeeklyQuestion.objects.filter(active=True).filter(weeklyanswer__answered_by=user).exclude(weeklyanswer__answer_again_from__gte=timezone.now())
-        print 'wqs1', wq_qs1
-        print 'wqs2', wq_qs2
 
         wq_qs = wq_qs1 | wq_qs2
 
