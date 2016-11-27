@@ -5,8 +5,8 @@
 </div>
 <div class="row">
     {% for key, value in wq.answers_lst %}
-        <div class="col-xs-12 col-sm-2 {% if forloop.counter0 == 0 %}col-sm-offset-1{% endif %}">
-            <a href="{% url 'answer_weekly_question' %}/?question_id={{ wq.id }}&answer_value={{ value }}"><div class="btn btn-success btn-block mtop">{{ key }}</div></a>
+        <div class="col-xs-12 col-sm-12 col-lg-2 {% if forloop.counter0 == 0 %}col-lg-offset-1{% endif %}">
+            <a style="text-decoration: none" href="{% url 'answer_weekly_question' %}/?question_id={{ wq.id }}&answer_value={{ value }}"><div class="btn btn-default btn-block mtop">{{ key }}</div></a>
         </div>
     {% endfor %}
 </div>

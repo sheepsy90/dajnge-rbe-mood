@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container-fluid">
 <div class="row" style="margin-top: 4em">
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
         {% if weekly_question %}
             {% if weekly_question.answer_count == 2 %}
                 {% include 'polls/questions/yes_no_question.html' with wq=weekly_question %}
@@ -17,6 +17,8 @@
         {% else %}
             <h4>Sorry, no weekly question available for you right now.</h4>
         {% endif %}
+
+        <div style="font-size: 10px; margin-top: 0.5em" class="pull-right">({{ remaining_weekly_question }} question{% if remaining_weekly_question > 1%}s{% endif %} remaining)</div>
     </div>
 </div>
     </div>
