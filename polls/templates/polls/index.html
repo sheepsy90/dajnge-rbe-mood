@@ -12,7 +12,9 @@
     </div>
     <div class="row" style="margin-top: 2em">
         <div class="col-xs-6 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4 centering">
-            <a href="{% url 'specific_survey' %}"><img class="category {% if available_survey_count == 0 %}not-available{% endif %}  img-responsive"  src="{% static 'img/specific_surveys.png' %}"></a>
+            {% if available_survey_count > 0 %}<a href="{% url 'specific_survey' %}">{% endif %}
+                <img class="category {% if available_survey_count == 0 %}not-available{% endif %}  img-responsive"  src="{% static 'img/specific_surveys.png' %}">
+            {% if available_survey_count > 0 %}</a>{% endif %}
              {% if available_survey_count == 1 %}
                 <span style="font-size: 12px">You can take part in a survey.</span>
             {% elif available_survey_count > 1 %}
@@ -22,7 +24,9 @@
             {% endif %}
         </div>
         <div class="col-xs-6 col-sm-3 col-md-2 centering">
-            <a href="{% url 'weekly_question' %}"><img class="category {% if weekly_question_count == 0 %}not-available{% endif %} img-responsive" src="{% static 'img/weekly_questions.png' %}"></a>
+            {% if weekly_question_count > 0 %}<a href="{% url 'weekly_question' %}">{% endif %}
+                <img class="category {% if weekly_question_count == 0 %}not-available{% endif %} img-responsive" src="{% static 'img/weekly_questions.png' %}">
+            {% if weekly_question_count > 0 %}</a>{% endif %}
             {% if weekly_question_count == 1 %}
                 <span style="font-size: 12px">You can answer {{ weekly_question_count }} question.</span>
             {% elif weekly_question_count > 1%}
