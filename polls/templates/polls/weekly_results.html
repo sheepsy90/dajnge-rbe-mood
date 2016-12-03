@@ -11,19 +11,21 @@
 
                     <table class="table">
                     <tr>
-                        <th>Week Number</th>
-                        <th>Standard deviation</th>
-                        <th>Variance</th>
-                        <th>Mean</th>
-                        <th>Median</th>
+                        <th style="text-align: center">Week</th>
+                        <th style="text-align: center">Size</th>
+                        <th style="text-align: center">Mean</th>
+                        <th style="text-align: center">Variance</th>
+                        <th style="text-align: center">Standard dev.</th>
+                        <th style="text-align: center">Median</th>
                     </tr>
                     {% for week_nr, result_lst in values.weeks.items %}
                         <tr>
-                           <td class="col-sm-2">{{ week_nr }}</td>
-                           <td class="col-sm-2">{{ result_lst.npstd|stringformat:'.2f' }}</td>
-                           <td class="col-sm-2">{{ result_lst.npvar|stringformat:'.2f' }}</td>
-                           <td class="col-sm-2">{{ result_lst.npmean|stringformat:'.2f' }}</td>
-                           <td class="col-sm-2">{{ result_lst.npmed|stringformat:'.2f' }}</td>
+                           <td class="col-sm-2" style="text-align: center">{{ week_nr }}</td>
+                           <td class="col-sm-1" style="text-align: center">{{ result_lst.raw|length }}</td>
+                            <td class="col-sm-2" style="text-align: center">{{ result_lst.npmean|stringformat:'.2f' }}</td>
+                            <td class="col-sm-2" style="text-align: center">{{ result_lst.npvar|stringformat:'.2f' }}</td>
+                            <td class="col-sm-3" style="text-align: center">{{ result_lst.npstd|stringformat:'.2f' }}</td>
+                           <td class="col-sm-2" style="text-align: center">{{ result_lst.npmed|stringformat:'.2f' }}</td>
                         </tr>
                     {% endfor %}
                     </table>
