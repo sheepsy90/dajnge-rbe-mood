@@ -10,4 +10,5 @@ urlpatterns = [
     url('answer_weekly_question', polls.views.answer_weekly_question, name='answer_weekly_question'),
     url('weekly_question', polls.views.weekly_question, name='weekly_question'),
     url('specific_survey', polls.views.specific_survey, name='specific_survey'),
+    url('weekly_results', polls.views.weekly_results, name='weekly_results'),
 ]

@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
@@ -64,6 +66,31 @@ def weekly_question(request):
 @login_required(login_url=settings.LOGIN_URL)
 def specific_survey(request):
     return HttpResponse("Weekly question")
+
+
+@login_required(login_url=settings.LOGIN_URL)
+def weekly_results(request):
+    context = {}
+    context['answers'] = {}
+    wq_qs = WeeklyQuestion.objects.all()
+
+    # TODO - this calculation can be performed faster
+    for element in wq_qs:
+        context['answers'][element.id] = {
+            'question': element.question,
+            'weeks': {},
+            'answers': element.answers
+        }
+
+        answer_list = WeeklyAnswer.objects.filter(question=element).order_by('answered_date').values_list('answered_date', 'answer')
+        answer_list = [(e[0].isocalendar()[1], e[1]) for e in answer_list]
+        weeks = set([e[0] for e in answer_list])
+        for week in weeks:
+            relevant_for_this_week = [e[1] for e in answer_list if e[0] == week]
+            context['answers'][element.id]['weeks'][week] = relevant_for_this_week
+
+    return render(request, 'polls/weekly_results.html', context)
+
 
 
 @login_required(login_url=settings.LOGIN_URL)
