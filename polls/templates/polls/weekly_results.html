@@ -12,12 +12,18 @@
                     <table class="table">
                     <tr>
                         <th>Week Number</th>
-                        <th>Answers</th>
+                        <th>Standard deviation</th>
+                        <th>Variance</th>
+                        <th>Mean</th>
+                        <th>Median</th>
                     </tr>
                     {% for week_nr, result_lst in values.weeks.items %}
                         <tr>
-                            <td class="col-sm-2">{{ week_nr }}</td>
-                            <td class="col-sm-10">{{ result_lst }}</td>
+                           <td class="col-sm-2">{{ week_nr }}</td>
+                           <td class="col-sm-2">{{ result_lst.npstd|stringformat:'.2f' }}</td>
+                           <td class="col-sm-2">{{ result_lst.npvar|stringformat:'.2f' }}</td>
+                           <td class="col-sm-2">{{ result_lst.npmean|stringformat:'.2f' }}</td>
+                           <td class="col-sm-2">{{ result_lst.npmed|stringformat:'.2f' }}</td>
                         </tr>
                     {% endfor %}
                     </table>

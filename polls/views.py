@@ -1,5 +1,7 @@
 import json
 
+import numpy as np
+
 from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
@@ -87,7 +89,17 @@ def weekly_results(request):
         weeks = set([e[0] for e in answer_list])
         for week in weeks:
             relevant_for_this_week = [e[1] for e in answer_list if e[0] == week]
-            context['answers'][element.id]['weeks'][week] = relevant_for_this_week
+            npstd = np.std(relevant_for_this_week)
+            npvar = np.var(relevant_for_this_week)
+            npmean = np.mean(relevant_for_this_week)
+            npmed = np.median(relevant_for_this_week)
+            context['answers'][element.id]['weeks'][week] = {
+                'raw': relevant_for_this_week,
+                'npstd': npstd,
+                'npvar': npvar,
+                'npmed': npmed,
+                'npmean': npmean
+            }
 
     return render(request, 'polls/weekly_results.html', context)
 
