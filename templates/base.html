@@ -61,7 +61,7 @@
             {% if user.is_authenticated %}
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li id='results'><a href="{% url 'weekly_results' %}"><span class="fa fa-metrics"></span> Results</a></li>
+                        <li id='results'><a href="{% url 'weekly_results' %}"><span class="fa fa-bar-chart"></span> Results</a></li>
                         <li id='question_types'><a href="{% url 'question_types' %}"><span class="fa fa-info"></span> Explanation & Terminology</a></li>
                         <li id='settings_page'><a href="{% url 'settings_page' %}"><span class="fa fa-wrench"></span> Settings</a></li>
                         <li id='logout'><a href="{% url 'logout' %}"><span class="fa fa-sign-out"></span> Logout</a></li>
